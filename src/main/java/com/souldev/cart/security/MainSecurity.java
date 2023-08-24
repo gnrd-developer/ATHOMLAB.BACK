@@ -47,7 +47,7 @@ public class MainSecurity {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().configurationSource(request -> {
             CorsConfiguration configuration = new CorsConfiguration();
-            configuration.setAllowedOriginPatterns(List.of("http://localhost:3000"));
+            configuration.setAllowedOriginPatterns(List.of("http://localhost:3000", "https://athomlabfront1-production.up.railway.app/"));
             configuration.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
             configuration.setAllowCredentials(true);
             configuration.addExposedHeader("Message");

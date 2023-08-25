@@ -63,7 +63,7 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(loginUser.getUserName(), loginUser.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtProvider.generateToken(authentication);
-            CookieUtil.create(httpServletResponse, cookieName, jwt, false, -1, "localhost");
+            CookieUtil.create(httpServletResponse, cookieName, jwt, false, -1, "railway.app");
             return new ResponseEntity<>(new Message("Sesión iniciada"), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new Message("Revise sus credenciales"), HttpStatus.BAD_REQUEST);

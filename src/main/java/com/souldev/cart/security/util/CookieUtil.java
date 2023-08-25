@@ -24,7 +24,7 @@ public class CookieUtil {
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(1);
-        cookie.setDomain("null");
+        cookie.setDomain("railway.app");
         httpServletResponse.addCookie(cookie);
     }
 }

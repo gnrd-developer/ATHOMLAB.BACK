@@ -1,4 +1,4 @@
-package com.souldev.cart.services;
+/*package com.souldev.cart.services;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,3 +13,4 @@ public interface IUploadFileService {
 
 	public boolean delete(String filename);
 }
+*/

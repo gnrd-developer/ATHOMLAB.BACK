@@ -43,10 +43,15 @@ public class User {
 
     @NotNull
     @ManyToMany(fetch = FetchType.EAGER)
+    /*
+        "FetchType.EAGER" 
+        significa que cuando 
+        miramos un usuario en 
+        la caja de "Usuarios", 
+        también queremos ver todos sus roles de inmediato.
+    */
     @JoinTable(name="user_role", joinColumns = @JoinColumn(name="user_id"),
      inverseJoinColumns=@JoinColumn(name="role_id"))
-
-
     private Set<Role> roles = new HashSet<>();
 
     

@@ -1,22 +1,23 @@
 package com.souldev.cart.controllers;
 import com.souldev.cart.entities.Message;
 import com.souldev.cart.entities.Product;
-import com.souldev.cart.services.IUploadFileService;
+//import com.souldev.cart.services.IUploadFileService;
 import com.souldev.cart.services.ProductService;
 import com.souldev.cart.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
+//import org.springframework.core.io.Resource;
+//import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
-import java.net.MalformedURLException;
+//import java.nio.charset.StandardCharsets;
+//import java.net.MalformedURLException;
 //import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +29,8 @@ public class ProductController {
     @Autowired
     private IProductService iProductService;
 
-    @Autowired
-    private IUploadFileService uploadFileService;
+    /*@Autowired
+    private IUploadFileService uploadFileService;*/
 
     @Autowired
     private ProductService productService;
@@ -68,6 +69,51 @@ public class ProductController {
 
     
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Message> createProduct(@Valid @RequestPart("product") String stringProduct, BindingResult bindingResult){
+    try {
+        Product product = iProductService.convertJsonToProduct(stringProduct);
+        this.iProductService.saveProduct(product);
+        return new ResponseEntity<>(new Message("Actualizado correctamente"),HttpStatus.OK);
+    } catch (Exception e) {
+        return new ResponseEntity<>(new Message("Revise los campos"),HttpStatus.BAD_REQUEST);
+    }
+    }
+
+
+    /*
+
+    ·····················································································································
+
+    @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Message> createProduct(@Valid @RequestPart("product") String stringProduct, BindingResult bindingResult){
+    try {
+        Product product = iProductService.convertJsonToProduct(stringProduct);
+        this.iProductService.saveProduct(product);
+        return new ResponseEntity<>(new Message("Actualizado correctamente"),HttpStatus.OK);
+    } catch (Exception e) {
+        return new ResponseEntity<>(new Message("Revise los campos"),HttpStatus.BAD_REQUEST);
+    }
+    }
+
+    ···········································································································
+
+    @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<Message> createProduct(@Valid @RequestPart("product") MultipartFile productFile, BindingResult bindingResult) {
+        try {
+            // Obtén la cadena JSON de MultipartFile
+            String stringProduct = new String(productFile.getBytes(), StandardCharsets.UTF_8);
+
+            Product product = iProductService.convertJsonToProduct(stringProduct);
+            this.iProductService.saveProduct(product);
+            return new ResponseEntity<>(new Message("Actualizado correctamente"), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Message("Revise los campos"), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    ··············································································································3
+    #ORIGINAL
+    @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<Message> createProduct(@Valid @RequestPart("product") String stringProduct, @RequestPart("file") MultipartFile image,@RequestPart("file2") MultipartFile pdf, BindingResult bindingResult){
     try {
         Product product = iProductService.convertJsonToProduct(stringProduct);
@@ -86,7 +132,8 @@ public class ProductController {
         return new ResponseEntity<>(new Message("Revise los campos"),HttpStatus.BAD_REQUEST);
     }
     }
-
+    
+    ···············································································································
     
     @GetMapping(value = "/uploads/{filename}")
 	public ResponseEntity<Resource> goImage(@PathVariable String filename) {
@@ -99,7 +146,7 @@ public class ProductController {
         return ResponseEntity.ok()
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename='\' + resource.getFilename() + '\'")
         .body(resource);
-	}
+	}*/
 
 
 

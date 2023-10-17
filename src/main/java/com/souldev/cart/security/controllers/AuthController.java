@@ -64,6 +64,7 @@ public class AuthController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtProvider.generateToken(authentication);
             CookieUtil.create(httpServletResponse, cookieName, jwt, false, -1, "railway.app");
+            /*CookieUtil.create(httpServletResponse, cookieName, jwt, false, -1, "localhost");*/
             return new ResponseEntity<>(new Message("Sesión iniciada"), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new Message("Revise sus credenciales"), HttpStatus.BAD_REQUEST);

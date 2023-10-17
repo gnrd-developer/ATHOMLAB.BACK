@@ -22,10 +22,25 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+
+
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+/* permite la seguridad a nivel de método, 
+lo que significa que puedes asegurar 
+métodos específicos con anotaciones de 
+seguridad.
+*/
+
+
 public class MainSecurity {
     @Autowired
     private JwtEntryPoint jwtEntryPoint;
+    /*
+     * Aquí se inyecta una instancia de JwtEntryPoint, 
+     * que es un componente personalizado utilizado para 
+     * manejar errores de autenticación.
+    */
+    
 
     @Bean
     public JwtTokenFilter jwtTokenFilter() {

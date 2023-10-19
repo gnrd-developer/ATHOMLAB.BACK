@@ -70,7 +70,7 @@ public class MainSecurity {
             return configuration;
         }).and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/login","/auth/register","/auth/logout","/auth/detail/**","/product/**","/category/**","/subcategory/**","/product/subcategory/**")
+                .antMatchers("/auth/login","/auth/register","/auth/logout","/auth/details/**","/product/**","/category/**","/subcategory/**","/product/subcategory/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

@@ -88,8 +88,7 @@ public class AuthController {
 
     @GetMapping("/details")
     public ResponseEntity<Object> getUserDetails() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userName = userDetails.getUsername();
         Optional<User> user = this.userService.getByUserName(userName);
         if (!user.isPresent())

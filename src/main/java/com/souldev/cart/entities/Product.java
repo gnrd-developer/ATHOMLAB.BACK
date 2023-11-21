@@ -7,7 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +15,7 @@ import javax.persistence.ManyToOne;
 //import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @AllArgsConstructor
@@ -34,7 +34,7 @@ public class Product {
 
 
     @NotBlank @NotNull
-    @Column(length = 2000)
+    @Size(max = 2500)
     @Getter @Setter
     private String description;
 

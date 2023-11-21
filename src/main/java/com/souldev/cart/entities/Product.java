@@ -33,6 +33,7 @@ public class Product {
 
 
     @NotBlank @NotNull
+    @Column(length = 1000)
     @Getter @Setter
     private String description;
 

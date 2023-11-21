@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -34,7 +35,8 @@ public class Product {
 
 
     @NotBlank @NotNull
-    @Size(max = 2500)
+    @Size(max = 2000)
+    @Type(type = "text")
     @Getter @Setter
     private String description;
 
